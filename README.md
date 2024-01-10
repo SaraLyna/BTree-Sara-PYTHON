@@ -5,7 +5,7 @@
 
 # Binôme:
 - Sara Lyna Ouyahia
-- 
+- Mahiedine Ferdjoukh
 
 # Présentation du projet :
 Ceci est un projet en Python-objets, structuré avec des Arbre-B (Arbre-Balanced),
