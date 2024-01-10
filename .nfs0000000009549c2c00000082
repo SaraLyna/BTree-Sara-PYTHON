@@ -33,10 +33,7 @@ Mercredi 10 Janvier :
 - Possibilité de coder une sorte d'intéraction avec l'utilisateur pour lui permettre d'intéragir avec la fenetre et créer de lui meme un arbre.
 - Ajouter des options telles que l'ajout ou la suppression de noeuds/feuilles.
 - Commencer à créer les classes dés cette semaine.
-- Mettre en surbrillance les noeuds auquels on veut ajouter des clés (par exemple).
-- Rendre l'interface intéractive et drole (ajouter des chemins colorés pour les clés nouvellement ajoutées).
-- explorer le double clic sur un noeud ou le passage de la souris dessus.
-- D'abord commencer par afficher le squelette de l'arbre binaire équilibré.
+
 
 
 
