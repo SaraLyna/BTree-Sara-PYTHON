@@ -7,11 +7,15 @@
 - Sara Lyna Ouyahia
 - Mahiedine Ferdjoukh
 
-# Présentation du projet :
+# Présentation du projet et son lien avec le concept Objets :
 Ceci est un projet en Python-objets, structuré avec des Arbre-B (Arbre-Balanced),
 Un arbre de recherche est un dictionnaire qui préserve le classement d'une fonction spécifiée par l'utilisateur, également connue sous le nom de dictionnaire trié.
 C'est globalement une implémentation d'un arbre binaire équilibré avec une vue (une fenetre ) et une intéraction avec l'utilisateur,
 ce qui pourra permettre à l'utilisateur d'intéragir en temps réel avec la fenetre et construire l'arbre. en ajoutant/supprimant des noeuds/feuilles.
+La notion d'objets sera exploré en faisant hérister la classe MyTree de TreeBalanced (classe générique),
+le polymorphisme sera dans la surcharge des méthodes de la classe TreeBalanced dans la classe MyTree,
+créer une fenêtre graphique (par exemple, en utilisant Tkinter) pour afficher notre arbre équilibré, on peut encapsuler la logique d'affichage dans une classe spécifique à l'interface utilisateur Window ! Cela permettra de séparer clairement la logique de l'arbre et celle de l'interface utilisateur, suivant le principe de la séparation des préoccupations.
+
 
 ## How To :
 
