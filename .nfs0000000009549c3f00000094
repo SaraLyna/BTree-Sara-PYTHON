@@ -39,11 +39,6 @@ Mercredi 10 Janvier :
 - D'abord commencer par afficher le squelette de l'arbre binaire équilibré.
 
 
-### Semaine 2 :
-
-
-
-### Semaine 3 :
 
 
 
@@ -55,7 +50,6 @@ Mercredi 10 Janvier :
 
 
 ## Sources à regarder : 
-
 `docs.python-guide.org/writing/structure`
 
 `packaging.python.org/en/lates+/tutorials/packaging-projects`
@@ -65,16 +59,22 @@ indexes" (PDF), Acta Informatica`
 
 `https://www.cs.usfca.edu/~galles/visualization/BTree.html`
 
-`https://www.youtube.com/watch?v=coRJrcIYbF4`
+``
 
 
-## exemple de jeux :
 
-- redblobgames.com (triangulation)
-- thomas was alone
-- oxyd , brainies/sqweek
-- Robo Rally
-- Ray tracer ? (gémoétrie + maths)
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
