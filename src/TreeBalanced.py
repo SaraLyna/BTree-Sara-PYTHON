@@ -1,71 +1,65 @@
- # @author Sara Lyna OUYAHIA
- # @date 10/01/2024
- 
- 
- # create the balanced tree, l'arbre générique mère de My-Tree
+from Node import Node
 
-import Node.py
-
-
-class TreeBalanced :
-    def __init__(self, l, u):
+class TreeBalanced:
+    def __init__(self, degree):
         self.degree = degree
         self.root = None
-        self.size = 0
-        self.l = l 
-        self.u = u
-        self.k = 0
-        self.keys = [None] * (u - 1)
-        self.childs = [None] * u
-        
-    def search_value(key, node): # retrun the key value
+
+
+
+    def _insert_node(self, new_node, current_node):
+        current_node.keys.append(new_node.key)
+        current_node.childs.append(new_node.value)
+        current_node.k += 1
+
+
+    def add_node(self, node):
+        if self.root is None:
+            self.root = node
+        else:
+            self._insert_node(node, self.root)
+
+
+
+    def search_value(self, key, node):
         if node is None:
-            return None  
-        elif key == node.key:
-            return node.value  # Clé trouvée, retourner la valeur associée
+            return None
+        elif key in node.keys:
+            index = node.keys.index(key)
+            return node.childs[index]
         else:
             for child in node.childs:
-                if key < child.key:
-                    # La clé est inférieure à celle de l'enfant, recherche récursive à gauche
-                    return search_value(key, child)
-                elif key == child.key:
-                    # La clé est égale à celle de l'enfant, retourner la valeur associée
-                    return child.value
-                else:
-                    # La clé est supérieure à celle de l'enfant, recherche récursive à droite
-                    return search_value(key, child)
+                result = self._search_value(key, child)
+                if result is not None:
+                    return result
 
 
-    def search_bool(self, key, node): #returnBool
+    def search_bool(self, key, node):
         if node is None:
             return False
 
-        index = 0
-        while index < node.k and key > node.keys[index]:
-            index += 1
-
-        if index < node.k and key == node.keys[index]:
+        if key in node.keys:
             return True
-        elif node.childs[index]:
-            return self.searchBool(key, node.childs[index])
         else:
+            for child in node.childs:
+                if self._search_bool(key, child):
+                    return True
             return False
-        
-        
+
+
+
     def is_Btree(self, node):
         if node is None:
             return True
 
-        if node.k > node.u - 1 or node.k < (node.u // 2) - 1:
+        if node.k > self.degree - 1 or node.k < (self.degree // 2) - 1:
             return False
 
         for i in range(node.k):
-            if node.childs[i] and not self.is_Btree(node.childs[i]):
+            if node.childs[i] and not self._is_Btree(node.childs[i]):
                 return False
 
-        if node.childs[node.k] and not self.is_Btree(node.childs[node.k]):
+        if node.childs[node.k] and not self._is_Btree(node.childs[node.k]):
             return False
 
         return True
-    
-    
