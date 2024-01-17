@@ -6,12 +6,6 @@ class TreeBalanced:
         self.root = None
 
 
-
-#     def _insert_node(self, new_node, current_node):
-#         current_node.get_keys.append(new_node.key)
-#         current_node.get_childs.append(new_node.value)
-#         current_node.get_size += 1
-
     def _insert_node(self, new_node, current_node):
         if new_node.value < current_node.value:
             if current_node.left is None:
@@ -32,19 +26,6 @@ class TreeBalanced:
         else:
             self._insert_node(node, self.root)
 
-
-
-#     def search_value(self, key, node):
-#         if node is None:
-#             return None
-#         elif key in node.keys:
-#             index = node.keys.index(key)
-#             return node.childs[index]
-#         else:
-#             for child in node.childs:
-#                 result = self._search_value(key, child)
-#                 if result is not None:
-#                     return result
 
 
     def search_value(self, key, node):
@@ -77,23 +58,6 @@ class TreeBalanced:
             return False
 
 
-
-#     def is_Btree(self, node):
-#         if node is None:
-#             return True
-# 
-#         if node.k > self.degree - 1 or node.k < (self.degree // 2) - 1:
-#             return False
-# 
-#         for i in range(node.k):
-#             if node.childs[i] and not self._is_Btree(node.childs[i]):
-#                 return False
-# 
-#         if node.childs[node.k] and not self._is_Btree(node.childs[node.k]):
-#             return False
-# 
-#         return True
-#
 
     def is_Btree(self, node):
         if node is None:
