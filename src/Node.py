@@ -3,7 +3,7 @@
  
  # classe qui gére les noeuds
  
- class Node:
+class Node:
     def __init__(self, value=None):
         self.keys = [value] #valeur utilisée pour comparer les noeuds
         self.value = value #valeur associée à la clé
@@ -30,7 +30,10 @@
         return self.parent
 
     def get_size(self):
-        return self.size
+        size = 1
+        for child in self.childs:
+            size += child.get_size()
+        return size
 
     def set_child(self, child_node):
         child_node.parent = self
