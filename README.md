@@ -47,6 +47,9 @@ Mercredi 17 Janvier :
 - Codage de la classe TreeBalanced.py et implémentation de ses méthodes essentielles telles que init() search_value(), search_bool() et is_Btree().
 - pour cette semaine seul l'algorithme de recherche est demandé, on a fait un algo de recherche qui retourne une valeur(celle de la clé) et un 2eme algo qui retourne un booléen qui nous informe de la présence ou pas de la clé.
 - En deuxième lieu on a fait les tests, les tests des méthodes de la classe Node.py
+- réalisation des tests de la classe TreeBalanced.
+- on a essayer de réaliser la structure de l'arbre.
+- rectification de quelques erreurs dans la  classe TreeBalanced, apres le lancement des tests.
 
 
 
