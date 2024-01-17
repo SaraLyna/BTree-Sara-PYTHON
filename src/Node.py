@@ -4,8 +4,8 @@
  # classe qui gére les noeuds
  
 class Node:
-    def __init__(self, value=None):
-        self.keys = [value] #valeur utilisée pour comparer les noeuds
+    def __init__(self,key, value=None):
+        self.keys = [key] #valeur utilisée pour comparer les noeuds
         self.value = value #valeur associée à la clé
         self.childs = [] #liste des enfants du noeud
         self.left = self.right = None
@@ -14,7 +14,8 @@ class Node:
         
         
     def __str__(self):
-        return str(self.value)
+        return f"{self.keys[0]} {self.value}" if self.value is not None else str(self.keys[0])
+
     
     def search_node(self, key):
         return key in self.keys
