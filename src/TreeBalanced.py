@@ -11,6 +11,7 @@ class TreeBalanced:
         current_node.keys.append(new_node.key)
         current_node.childs.append(new_node.value)
         current_node.k += 1
+        
 
 
     def add_node(self, node):
@@ -63,3 +64,27 @@ class TreeBalanced:
             return False
 
         return True
+    
+    """"""
+tree = TreeBalanced(3)
+
+# Adding nodes
+node1 = Node(10, 'A')
+node2 = Node(20, 'B')
+node3 = Node(30,'C')
+
+tree.add_node(node1)
+tree.add_node(node2)
+tree.add_node(node3)
+
+# Searching for values
+print(tree.search_value(10, tree.root))  # Output: 'A'
+print(tree.search_value(20, tree.root))  # Output: 'B'
+print(tree.search_value(30, tree.root))  # Output: 'C'
+
+# Searching for keys
+print(tree.search_bool(10, tree.root))  # Output: True
+print(tree.search_bool(25, tree.root))  # Output: False
+
+# Checking if it's a B-tree
+print(tree.is_Btree(tree.root))  # Output: True
