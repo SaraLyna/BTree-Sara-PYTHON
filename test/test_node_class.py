@@ -1,7 +1,7 @@
 import sys
+sys.path.insert(0, '../src')  
+
 from Node import Node
-
-
 
 def test_node_class():
     # Test du constructeur
@@ -10,7 +10,6 @@ def test_node_class():
     assert node1.get_childs() == []
     assert node1.get_parent() is None
     assert node1.get_size() == 1
-
     # Test de __str__
     assert str(node1) == "10"
 
@@ -40,5 +39,8 @@ def test_node_class():
 
     print("Tous les tests sont passés ")
 
-# Exécuter les tests
-test_node_class()
+
+
+if __name__ == "__main__":
+    test_node_class()
+    
