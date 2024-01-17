@@ -8,9 +8,9 @@ class TreeBalanced:
 
 
     def _insert_node(self, new_node, current_node):
-        current_node.keys.append(new_node.key)
-        current_node.childs.append(new_node.value)
-        current_node.k += 1
+        current_node.get_keys.append(new_node.key)
+        current_node.get_childs.append(new_node.value)
+        current_node.get_size += 1
         
 
 

@@ -1,7 +1,9 @@
 import sys
 sys.path.insert(0, '../src')
-from TreeBalanced import TreeBalanced, Node
+import unittest  
+from Node import Node  
 
+class TestTreeBalanced(unittest.TestCase):  # Héritage de unittest.TestCase
     def test_add_node_and_search(self):
         # Création de l'arbre avec un degré de 3
         my_tree = TreeBalanced(3)
@@ -35,8 +37,5 @@ from TreeBalanced import TreeBalanced, Node
         self.assertFalse(invalid_tree.is_Btree(invalid_tree.root))
         self.assertTrue(valid_tree.is_Btree(valid_tree.root))
 
-
 if __name__ == "__main__":
-    test_is_Btree()
-    test_add_node_and_search()
-    
+    unittest.main()  # Exécuter les tests avec unittest.main()
