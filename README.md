@@ -40,6 +40,13 @@ Mercredi 10 Janvier :
 
 
 ### Semaine 2 :
+Mercredi 17 Janvier :
+- Modification de l'UML et ajout des différentes méthodes et relations entre les classes.
+- Codage de la classe Node.py et implémentation de ses différentes méthodes.
+- Suppression de la classe MyTree.py car seule la classe TreeBalanced nous intéresse finalement.
+- Codage de la classe TreeBalanced.py et implémentation de ses méthodes essentielles telles que init() search_value(), search_bool() et is_Btree().
+- pour cette semaine seul l'algorithme de recherche est demandé, on a fait un algo de recherche qui retourne une valeur(celle de la clé) et un 2eme algo qui retourne un booléen qui nous informe de la présence ou pas de la clé.
+- En deuxième lieu on a fait les tests, les tests des méthodes de la classe Node.py
 
 
 
