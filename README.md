@@ -19,11 +19,16 @@ créer une fenêtre graphique (par exemple, en utilisant Tkinter) pour afficher 
 
 ## How To :
 
-il suffit de lancer le ficher projet.py 
-ou via la commande `python3 projet.py`
+il suffit de lancer les tests unitaires directement dans le repertoire test 
+ou via la commande `pipenv run test`
 
 ## UML :
 [Diagramme UML (Lucid)](https://lucid.app/lucidchart/5362c04a-0055-4e38-96f6-b98e7b2418df/edit?view_items=hKf4u7b5I~bl&invitationId=inv_490324e7-3726-4202-810b-056d2cf5ce4e)
+
+`pyreverse -o png -p node -A -my -S Node.py`
+`pyreverse -o png -p tree_Balanced -A -my -S TreeBalanced.py`
+
+
 
 ## Journal de bord :
 
@@ -54,6 +59,15 @@ Mercredi 17 Janvier :
 
 
 ### Semaine 3 :
+Mercredi 24 Janvier :
+- Installation de pipenv sur le poste de travail afin d'automatiser les tests
+- Modification de l'algorithme de recherche + amélioration
+- codage de l'algorithme de linéarisation afin de tester l'ordre croissant des clés
+- Tests pour les méthodes search(), linearize(), is_btree()
+- Modification de l'UML pour etre en concordance avec le code
+- Rédaction du Readme
+- Finalisation des tests
+- Fin de la recherche et de la linéarisation.
 
 
 
