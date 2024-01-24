@@ -3,7 +3,7 @@ sys.path.insert(0, '../src')
 
 from Node import Node
 
-def test_node_class():
+def node_class_test():
     # Test du constructeur
     node1 = Node(10, "A")
     assert node1.get_keys() == [10]
@@ -42,5 +42,5 @@ def test_node_class():
 
 
 if __name__ == "__main__":
-    test_node_class()
+    node_class_test()
     
