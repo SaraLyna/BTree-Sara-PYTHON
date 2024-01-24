@@ -1,0 +1,26 @@
+image: python:alpine
+
+variables:
+  WORKON_HOME: "$CI_PROJECT_DIR/.cache/venvs"
+  PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
+  PIPENV_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pipenv"
+
+cache:
+  key:
+    files: [ "Pipfile.lock" ]
+    prefix: "$CI_JOB_IMAGE"
+  paths:
+    - .cache
+
+before_script:
+  - sh .gitlab-section.sh start dependencies "Installing dependencies..." "[collapsed=true]"
+  - pip install --upgrade pip
+  - pip install --ignore-installed pipenv
+  - pipenv sync --dev
+  - sh .gitlab-section.sh end dependencies
+
+lint:
+  script: pipenv run lint
+
+test:
+  script: pipenv run test

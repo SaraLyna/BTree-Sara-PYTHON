@@ -1,0 +1,23 @@
+target-version = "py312"
+
+[lint]
+select = [
+  "A", # builtins
+  "B", # bugbear
+  "D", # pydocstyle
+  "I", # isort
+  "N", # pep8 naming
+  "PT", # pytest style
+  "BLE", # blind exception
+  "FBT", # boolean positionals
+  "COM", # commas
+  "C4", # comprehensions
+  "EXE", # shebang
+  "ISC", # implicit string concatenations
+  "ICN", # import conventions
+  "SIM", # simplify
+]
+ignore = [ "D1", "D211", "D212", "ISC001", "COM812" ]
+
+[format]
+docstring-code-format = true

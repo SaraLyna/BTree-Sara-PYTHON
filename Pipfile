@@ -1,0 +1,20 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[requires]
+python_version = "3.12"
+python_full_version = "3.12.1"
+
+[packages]
+
+[dev-packages]
+pytest = "*"
+isort = "*"
+ruff = "*"
+
+[scripts]
+test = "pytest"
+lint = "ruff check"
+format = "sh -c 'ruff check --fix && ruff format' "

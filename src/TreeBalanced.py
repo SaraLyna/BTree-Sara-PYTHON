@@ -6,17 +6,17 @@ class TreeBalanced:
         self.root = None
 
 
-    def _insert_node(self, new_node, current_node):
-        if new_node.value < current_node.value:
-            if current_node.left is None:
-                current_node.left = new_node
-            else:
-                self._insert_node(new_node, current_node.left)
-        elif new_node.value > current_node.value:
-            if current_node.right is None:
-                current_node.right = new_node
-            else:
-                self._insert_node(new_node, current_node.right)
+#     def _insert_node(self, new_node, current_node):
+#         if new_node.value < current_node.value:
+#             if current_node.left is None:
+#                 current_node.left = new_node
+#             else:
+#                 self._insert_node(new_node, current_node.left)
+#         elif new_node.value > current_node.value:
+#             if current_node.right is None:
+#                 current_node.right = new_node
+#             else:
+#                 self._insert_node(new_node, current_node.right)
         
 
 
@@ -72,25 +72,42 @@ class TreeBalanced:
 
         return True
 
-tree = TreeBalanced(3)
- 
-# Adding nodes
-node1 = Node(10, 'A')
-node2 = Node(20, 'B')
-node3 = Node(30,'C')
- 
-tree.add_node(node1)
-tree.add_node(node2)
-tree.add_node(node3)
- 
-# Searching for values
-print(tree.search_value(10, tree.root))  # Output: 'A'
-print(tree.search_value(20, tree.root))  # Output: 'B'
-print(tree.search_value(30, tree.root))  # Output: 'C'
- 
- # Searching for keys
-print(tree.search_bool(10, tree.root))  # Output: True
-print(tree.search_bool(25, tree.root))  # Output: False
- 
- # Checking if it's a B-tree
-print(tree.is_Btree(tree.root))  # Output: True
+# tree = TreeBalanced(degree=3)
+# tree.root = node4 
+# # Adding nodes
+
+# node2 = Node(1, "A")
+# node5 = Node(2, "B")
+# node7 = Node(3, "C")
+# node10 = Node(4, "D")
+# node12 = Node(5, "E")
+# node15 = Node(6, "F")
+# node20 = Node(7, "G")
+
+#  
+# node4.childs = [node2, node6]
+# node2.childs = [node1, node3]
+# node6.childs = [node5, node7]
+#  
+# # Searching for values
+
+
+# key_to_search = 5
+# result_node = tree.search_value(key_to_search, tree.root)
+# 
+# if result_node is not None:
+#     print(f"Node with key {key_to_search} found: {result_node}")
+# else:
+#     print(f"Node with key {key_to_search} not found.")
+    
+# print(tree.search_value(4, tree.root))  # Output: 'D'
+# print(tree.search_value(7, tree.root))  # Output: 'G'
+# print(tree.search_value(2, tree.root))  # Output: 'B'
+#  
+#  # Searching for keys
+# print(tree.search_bool(6, tree.root))  # Output: True
+# print(tree.search_bool(25, tree.root))  # Output: False
+#  
+#  # Checking if it's a B-tree
+# is_balanced = tree.is_Btree(tree.root)
+# print(f"Is the tree balanced? {is_balanced}")
