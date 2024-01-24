@@ -1,33 +1,13 @@
 from Node import Node
 
+
 class TreeBalanced:
+    
     def __init__(self, degree):
         self.degree = degree
         self.root = None
-
-
-#     def _insert_node(self, new_node, current_node):
-#         if new_node.value < current_node.value:
-#             if current_node.left is None:
-#                 current_node.left = new_node
-#             else:
-#                 self._insert_node(new_node, current_node.left)
-#         elif new_node.value > current_node.value:
-#             if current_node.right is None:
-#                 current_node.right = new_node
-#             else:
-#                 self._insert_node(new_node, current_node.right)
         
-
-
-#     def add_node(self, node):
-#         if self.root is None:
-#             self.root = node
-#         else:
-#             self._insert_node(node, self.root)
-
-
-
+        
     def search(self, key, node=None):
         if not node:
             node = self.root
@@ -36,35 +16,35 @@ class TreeBalanced:
             i += 1
 
         if i < len(node.keys) and key == node.keys[i]:
-            return True
+            return node
         elif len(node.childs) > 0:
             print(f"Descending to child {i}")
             return self.search(key, node.childs[i])
         else:
             print("Key not found")
-            return False
+            return None
         
     def linearize(self, node=None):
         if not node:
             node = self.root
 
         res = []
-        for i in range(len(node.keys)):
-            res.append(node.keys[i])
-            if len(node.childs) > i:
-                res += self.linearize(node.childs[i])
+        i = 0
 
-        if len(node.childs) > len(node.keys):
-            res += self.linearize(node.childs[-1])
+        while i < len(node.keys):
+            if len(node.childs) > i:
+                res.extend(self.linearize(node.childs[i]))
+
+            res.append(node.keys[i])
+            i += 1
+
+        if len(node.childs) > i:
+            res.extend(self.linearize(node.childs[i]))
 
         return res
+    
 
-
-            
-
-
-
-    def is_Btree(self, node):
+    def is_btree(self, node):
         if node is None:
             return True
 
@@ -72,10 +52,11 @@ class TreeBalanced:
             return False
 
         for i in range(len(node.childs)):
-            if node.childs[i] and not self.is_Btree(node.childs[i]):
+            if node.childs[i] and not self.is_btree(node.childs[i]):
                 return False
 
         return True
+    
 
 # Adding nodes
 
@@ -87,13 +68,14 @@ node5 = Node(5, "E")
 node6 = Node(6, "F")
 node7 = Node(7, "G")
 
+
 tree = TreeBalanced(degree=3)
 tree.root = node4
 
 node4.childs = [node2, node6]
 node2.childs = [node1, node3]
 node6.childs = [node5, node7]
- 
+
 
 # tree2 = TreeBalanced(degree=2)
 # tree2.root= node7
@@ -113,21 +95,22 @@ else:
 print(tree.search(4, tree.root))  # Output: True
 print(tree.search(8, tree.root))  # Output: False
 print(tree.search(2, tree.root))  # Output: True
+
  
  # Checking if it's a B-tree
-is_balanced = tree.is_Btree(tree.root)
+is_balanced = tree.is_btree(tree.root)
 print(f"Is the tree balanced? {is_balanced}")
 
 # not_balaned= tree2.is_Btree(tree2.root)
 # print(f"Is the tree balanced? {not_balanced}")
 # 
-# result1 = sorted(tree.linearize()) == tree.search(4, tree.root)
-# result2 = sorted(tree.linearize()) == tree.search(8, tree.root)
-# result3 = sorted(tree.linearize()) == tree.search(13, tree.root)
-# result4 = sorted(tree.linearize()) == tree.search(1)
-# 
-# print(result1)
-# print(result2)
-# print(result3)
-# print(result4)
+result1 = (tree.linearize()) == [1, 2, 3, 4, 5, 6, 7]
+result2 = (tree.linearize()) == [1, 2, 3, 4, 5, 6, 7, 8]  # Fixing this line, assuming 8 is the last key
+result3 = (tree.linearize()) == [1, 2, 3, 4, 5, 6, 7, 13]  # Fixing this line, assuming 13 is not present
+result4 = (tree.linearize()) == [1, 2, 3, 4, 5, 6, 7]  # Fixing this line, assuming the correct key to search is 1
+
+print(result1)
+print(result2)
+print(result3)
+print(result4)
 # 

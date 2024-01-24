@@ -4,8 +4,8 @@ verify_ssl = true
 name = "pypi"
 
 [requires]
-python_version = "3.12"
-python_full_version = "3.12.1"
+python_version = "3"
+
 
 [packages]
 
@@ -13,6 +13,7 @@ python_full_version = "3.12.1"
 pytest = "*"
 isort = "*"
 ruff = "*"
+exceptiongroup = "*"
 
 [scripts]
 test = "pytest"
