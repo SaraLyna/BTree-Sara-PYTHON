@@ -47,7 +47,24 @@ def test_linearize():
 
     assert tree.linearize() == [7]
 
+
+
+def test_is_not_btree():
+    node1, node2, node3, _, _, node6, _ = set_nodes()
+    
+    invalid_tree = TreeBalanced(1)
+    invalid_tree.root = node6
+    node6.childs = [node1, node3]
+    node1.childs =[node2]
+    
+
+    assert invalid_tree.is_btree(invalid_tree.root) is False
+    print("Test d'un arbre invalide réussi")
+    
+    
+    
 def test_is_btree():
+
     _, _, _, _, _, node6, _ = set_nodes()
 
     tree = TreeBalanced(degree=3)

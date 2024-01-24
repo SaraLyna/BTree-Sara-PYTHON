@@ -48,7 +48,13 @@ class TreeBalanced:
         if node is None:
             return True
 
+        for i in range(len(node.keys) - 1):
+            if node.keys[i] >= node.keys[i + 1]:
+                print(f"Violation de la propriété de tri : {node.keys[i]} >= {node.keys[i + 1]}")
+                return False
+
         if len(node.keys) > self.degree - 1 or len(node.keys) < (self.degree // 2) - 1:
+            print(f"Violation de la taille du nœud : {len(node.keys)}")
             return False
 
         for i in range(len(node.childs)):
