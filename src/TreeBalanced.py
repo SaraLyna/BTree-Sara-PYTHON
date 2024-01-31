@@ -103,3 +103,5 @@ class TreeBalanced:
         keys_count = count_keys(self.root)
         coverage_ratio = (keys_count / total_nodes) * 100
         return coverage_ratio
+    
+    
