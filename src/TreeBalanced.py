@@ -63,3 +63,18 @@ class TreeBalanced:
 
         return True
     
+    def get_depth(self, node=None):
+        if not node:
+            node = self.root
+
+        if not node.childs:
+            return 0
+
+        child_depths = [self.get_depth(child) for child in node.childs]
+
+        if len(set(child_depths)) != 1:
+            print("Violation de la propriété de même profondeur")
+            return -1  
+
+        return 1 + child_depths[0]
+    
