@@ -102,7 +102,24 @@ def test_coverage_ratio():
     coverage_ratio = tree.coverage_ratio()
 
     assert coverage_ratio >= 50
+    
+def test_not_balanced():
+    tree = TreeBalanced(degree = 3)
+    node1, node2, node3, node4, node5, node6, node7 = set_nodes()
+    tree.root = node4
+    node4.childs = [node2, node6]
+    node2.childs = [node1, node3]    
+    assert not tree.is_balanced(tree.root)
 
+def test_is_balanced():
+    tree = TreeBalanced(degree = 3)
+    node1, node2, node3, node4, node5, node6, node7 = set_nodes()
+    tree.root = node4
+    node4.childs = [node2, node6]
+    node2.childs = [node1, node3]  
+    node6.childs = [node5, node7]  
+    assert tree.is_balanced(tree.root)
+    
 
 
 

@@ -60,6 +60,15 @@ class TreeBalanced:
         for i in range(len(node.childs)):
             if node.childs[i] and not self.is_btree(node.childs[i]):
                 return False
+            
+        
+
+        return True
+    
+    def is_balanced(self, node):
+        depth = self.get_depth(node)
+        if depth == -1:
+            return False
 
         return True
 
