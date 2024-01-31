@@ -2,12 +2,12 @@ from Node import Node
 
 
 class TreeBalanced:
-    
+
     def __init__(self, degree):
         self.degree = degree
         self.root = None
-        
-        
+
+
     def search(self, key, node=None):
         if not node:
             node = self.root
@@ -23,7 +23,7 @@ class TreeBalanced:
         else:
             print("Key not found")
             return None
-        
+
     def linearize(self, node=None):
         if not node:
             node = self.root
@@ -42,7 +42,7 @@ class TreeBalanced:
             res.extend(self.linearize(node.childs[i]))
 
         return res
-    
+
 
     def is_btree(self, node):
         if node is None:
@@ -62,9 +62,9 @@ class TreeBalanced:
                 return False
 
         return True
-    
-    
-    
+
+
+
     def get_depth(self, node=None):
         if not node:
             node = self.root
@@ -76,7 +76,21 @@ class TreeBalanced:
 
         if len(set(child_depths)) != 1:
             print("Violation de la propriété de même profondeur")
-            return -1  
+            return -1
 
         return 1 + child_depths[0]
-    
+
+
+    def coverage_ratio(self):
+        def count_keys(node):
+            if not node:
+                return 0
+            count = len(node.keys)
+            for child in node.childs:
+                count += count_keys(child)
+            return count
+            
+        total_nodes = len(self.linearize()) - 1
+        keys_count = count_keys(self.root)
+        coverage_ratio = (keys_count / total_nodes) * 100
+        return coverage_ratio
