@@ -55,6 +55,9 @@ class MainWindow(QMainWindow):
                     self.tree.insert(key, value)
                     self.visualize_tree()
 
+    def remove_node(self):
+        self.visualize_tree()
+
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
