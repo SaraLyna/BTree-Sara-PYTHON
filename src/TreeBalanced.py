@@ -63,6 +63,8 @@ class TreeBalanced:
 
         return True
     
+    
+    
     def get_depth(self, node=None):
         if not node:
             node = self.root
