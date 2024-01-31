@@ -1,7 +1,5 @@
 # Projet S6
 
-# @author Sara Lyna OUYAHIA
-# @date 10/01/2024 
 
 # Binôme:
 - Sara Lyna Ouyahia
@@ -68,6 +66,15 @@ Mercredi 24 Janvier :
 - Rédaction du Readme
 - Finalisation des tests
 - Fin de la recherche et de la linéarisation.
+
+
+### Semaine 4 : 
+Mercredi 31 janvier :
+- ajout de la foction qui permet de calculer la profondeur d'un noeud.
+- ajout d'une fonction qui verifie si l'arbre est équilibré en passant sa racine en parametre.
+- amelioration de l'algorithme de recherche.
+- passer le tests de is_balanced + de la fonction de get_depth qui retourne la profondeur d'un noeud.
+
 
 
 
