@@ -18,7 +18,7 @@ class TreeBalanced:
         if i < len(node.keys) and key == node.keys[i]:
             return node
         elif len(node.childs) > 0:
-            print(f"Descending to child {i}")
+            #print(f"Descending to child {i}")
             return self.search(key, node.childs[i])
         else:
             print("Key not found")
@@ -50,11 +50,11 @@ class TreeBalanced:
 
         for i in range(len(node.keys) - 1):
             if node.keys[i] >= node.keys[i + 1]:
-                print(f"Violation de la propriété de tri : {node.keys[i]} >= {node.keys[i + 1]}")
+                #print(f"Violation de la propriété de tri : {node.keys[i]} >= {node.keys[i + 1]}")
                 return False
 
         if len(node.keys) > self.degree - 1 or len(node.keys) < (self.degree // 2) - 1:
-            print(f"Violation de la taille du nœud : {len(node.keys)}")
+            #print(f"Violation de la taille du nœud : {len(node.keys)}")
             return False
 
         for i in range(len(node.childs)):
@@ -84,7 +84,7 @@ class TreeBalanced:
         child_depths = [self.get_depth(child) for child in node.childs]
 
         if len(set(child_depths)) != 1:
-            print("Violation de la propriété de même profondeur")
+            #print("Violation de la propriété de même profondeur")
             return -1
 
         return 1 + child_depths[0]

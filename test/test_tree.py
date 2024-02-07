@@ -1,6 +1,3 @@
-import sys
-
-sys.path.insert(0, '../src')
 from Node import Node
 from TreeBalanced import TreeBalanced
 
@@ -179,13 +176,4 @@ def test_post_conditions():
     assert (len(tree.linearize()), size_before + 1)
 
         
-        
-
-
-
-
-# if __name__ == "__main__":
-#     set_nodes()
-#     test_search()
-#     test_linearize()
-#     test_is_btree()
+       

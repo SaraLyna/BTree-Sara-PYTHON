@@ -36,7 +36,7 @@ class Node:
             size += child.get_size()
         return size
 
-    def set_child(self, child_node):
+    def add_child(self, child_node):
         child_node.parent = self
         self.childs.append(child_node)
         self.size += child_node.size
