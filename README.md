@@ -17,7 +17,7 @@ créer une fenêtre graphique (par exemple, en utilisant Tkinter) pour afficher 
 
 ## How To :
 
-il suffit de lancer les tests unitaires directement dans le repertoire test 
+il suffit de lancer les tests unitaires directement dans le repertoire test
 ou via la commande `pipenv run test`
 
 ## UML :
@@ -64,7 +64,7 @@ ou via la commande `pipenv run test`
 - Finalisation des tests.
 - Fin de la recherche et de la linéarisation.
 
-### Semaine 4 : 
+### Semaine 4 :
 #### Mercredi 31 Janvier :
 - Ajout de la fonction pour calculer la profondeur d'un nœud.
 - Ajout d'une fonction pour vérifier si l'arbre est équilibré en passant sa racine en paramètre.
@@ -79,6 +79,11 @@ ou via la commande `pipenv run test`
 - commencement des tests sur l'insertion.
 
 - Tests finis sur les méthodes d'insertion , à priori tout fonctionne très bien.
+- Implémentation de la méthode search_for_deletion().
+- Réflexion sur la logique de la suppression.
+- Modification et codage de méthodes dans la classe Window afin de visualiser correctement l'arbre.
+- Ajout des options de recherche de clé/valeur dans la classe window.
+- Suppression des fichiers inutiles.
 
 ## Insertion dans un Arbre B
 
@@ -88,19 +93,21 @@ L'opération d'insertion dans un arbre B se déroule en plusieurs étapes :
 
 2. **Insertion dans le nœud :** Une fois l'endroit d'insertion trouvé, la clé est insérée dans le nœud approprié. Si le nœud dépasse sa capacité maximale après l'insertion, il est divisé en deux parties.
 
-3. **Division du nœud :** La division du nœud se fait en extrayant la clé médiane et en créant un nouveau nœud pour contenir les clés de droite. Les clés et les enfants du nœud d'origine sont mis à jour pour ne contenir que les clés et les enfants de gauche.
+3. **Division/éclatement du nœud :** La division du nœud se fait en extrayant la clé médiane et en créant un nouveau nœud pour contenir les clés de droite. Les clés et les enfants du nœud d'origine sont mis à jour pour ne contenir que les clés et les enfants de gauche.
 
 4. **Réorganisation de l'arbre :** Si le nœud divisé avait un parent, la clé médiane est insérée dans le parent. Sinon, un nouveau nœud parent est créé, et les nœuds d'origine et nouveau sont définis comme enfants de ce parent. Si le nœud d'origine était la racine de l'arbre, la racine de l'arbre est mise à jour avec le nouveau parent.
 
 
 
+## Suppression dans un Arbre B
+
+
+- Logique à écrire
 
 
 
 
-
-
-## Sources à regarder : 
+## Sources à regarder :
 
 `docs.python-guide.org/writing/structure`
 
