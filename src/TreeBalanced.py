@@ -105,3 +105,18 @@ class TreeBalanced:
         return coverage_ratio
     
     
+    
+    def search_for_insertion(self, key, node):
+        if not node.childs:
+            return node
+        
+        i = 0
+        while i < len(node.keys) and key > node.keys[i]:
+            i += 1
+
+        return self.search_for_insertion(key, node.childs[i])
+    
+    
+    
+    
+    
