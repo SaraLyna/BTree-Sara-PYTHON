@@ -121,12 +121,65 @@ def test_is_balanced():
     
 
 def test_insert_in_root():
+    node1, node2, node3, node4, node5, node6, node7 = set_nodes()
     tree = TreeBalanced(3)
     node1 = Node(5, "A")
     tree.root = node1
     tree.insert(4)
     assert (len(tree.root.keys) == 2)
     assert (tree.root.keys[0] == 4)
+
+
+def test_insertion_single_key():
+    node1, node2, node3, node4, node5, node6, node7 = set_nodes()
+    tree = TreeBalanced(3)
+    node2 = Node(2, "G")
+    tree.root = node2
+    tree.insert(5, "S")
+    assert tree.search_for_insertion(5,tree.root) is not None
+
+
+ 
+def test_insertion_multiple_keys():
+    node1, node2, node3, node4, node5, node6, node7 = set_nodes()
+    tree = TreeBalanced(4)
+    node7 = Node(7, "G")
+   
+    tree.insert(6)
+    tree.insert(5) 
+    assert (tree.search_for_insertion(6,tree.root)) is not None
+    assert (tree.search_for_insertion(5,tree.root)) is not None 
+    assert (tree.search_for_insertion(3,tree.root)) is not None 
+    assert (tree.root.keys[0] == 5)  
+    
+        
+   
+def test_insertion_list_of_keys():
+    node1, node2, node3, node4, node5, node6, node7 = set_nodes()
+    tree = TreeBalanced(100)
+    node7 = Node(7, "G")
+    keys = [2, 4, 5, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 7, 9, 11, 13]
+    for key in keys:
+        tree.insert(keys) 
+    for key in keys:
+        assert (tree.search_for_insertion(key,tree.root)) is not None
+            
+                  
+    
+def test_post_conditions():
+    node1, node2, node3, node4, node5, node6, node7 = set_nodes()
+    tree = TreeBalanced(3)
+    node7 = Node(7, "G")
+    tree.insert(3)
+    assert (tree.search_for_insertion(3,tree.root)) is not None
+        
+    size_before = len(tree.linearize())
+           
+    tree.insert(7)
+    assert (len(tree.linearize()), size_before + 1)
+
+        
+        
 
 
 
