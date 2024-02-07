@@ -12,9 +12,9 @@ class MainWindow(QMainWindow):
 
         self.scene = QGraphicsScene(self)
         self.view = QGraphicsView(self.scene)
-        self.btn_create_tree = QPushButton("Créer un arbre", self)
-        self.btn_add_node = QPushButton("Ajouter un nœud", self)
-        self.btn_remove_node = QPushButton("Supprimer un nœud", self)
+        self.btn_create_tree = QPushButton("Create tree", self)
+        self.btn_add_node = QPushButton("Add node", self)
+        self.btn_remove_node = QPushButton("Delete node", self)
 
         self.btn_create_tree.clicked.connect(self.create_tree)
         self.btn_add_node.clicked.connect(self.add_node)
@@ -29,7 +29,7 @@ class MainWindow(QMainWindow):
 
         self.setCentralWidget(self.central_widget)
         self.setGeometry(100, 100, 800, 600)
-        self.setWindowTitle('Arbre B-Tree Visualisation')
+        self.setWindowTitle('B-Tree Visualization')
 
     def visualize_tree(self):
         if self.tree:
@@ -42,15 +42,16 @@ class MainWindow(QMainWindow):
             self.view.setScene(self.scene)
 
     def create_tree(self):
-        degree = 3
-        self.tree = TreeBalanced(degree)
-        self.visualize_tree()
+        degree, ok = QInputDialog.getInt(self, "Create Tree", "Enter the degree of the tree :")
+        if ok:
+            self.tree = TreeBalanced(degree)
+            self.visualize_tree()
 
     def add_node(self):
         if self.tree:
-            key, ok = QInputDialog.getInt(self, "Ajouter un nœud", "Entrez la clé du nœud:")
+            key, ok = QInputDialog.getInt(self, "Add node", "tap a key :")
             if ok:
-                value, ok = QInputDialog.getText(self, "Ajouter un nœud", "Entrez la valeur du nœud:")
+                value, ok = QInputDialog.getText(self, "Add node", "tap a value :")
                 if ok:
                     self.tree.insert(key, value)
                     self.visualize_tree()
