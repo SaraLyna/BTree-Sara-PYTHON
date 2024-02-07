@@ -6,7 +6,6 @@ from TreeBalanced import TreeBalanced
 
 
 def set_nodes():
-    # Adding nodes
     node1 = Node(1, "A")
     node2 = Node(2, "B")
     node3 = Node(3, "C")
@@ -120,6 +119,15 @@ def test_is_balanced():
     node6.childs = [node5, node7]  
     assert tree.is_balanced(tree.root)
     
+
+def test_insert_in_root():
+    tree = TreeBalanced(3)
+    node1 = Node(5, "A")
+    tree.root = node1
+    tree.insert(4)
+    assert (len(tree.root.keys) == 2)
+    assert (tree.root.keys[0] == 4)
+
 
 
 
