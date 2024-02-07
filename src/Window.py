@@ -1,5 +1,5 @@
 import sys
-from PyQt5.QtWidgets import QApplication, QMainWindow, QGraphicsScene, QGraphicsView, QVBoxLayout, QWidget, QPushButton, QInputDialog
+from PyQt5.QtWidgets import QApplication, QMainWindow, QGraphicsScene, QGraphicsView, QVBoxLayout, QWidget, QPushButton, QLineEdit, QInputDialog
 from PyQt5.QtGui import QPixmap
 from graphviz import Digraph
 from TreeBalanced import TreeBalanced, Node
@@ -16,6 +16,12 @@ class MainWindow(QMainWindow):
         self.btn_add_node = QPushButton("Add node", self)
         self.btn_remove_node = QPushButton("Delete node", self)
 
+
+        self.search_bar = QLineEdit(self)
+        self.search_bar.setPlaceholderText("Search key or value...")
+        self.search_bar.textChanged.connect(self.search_in_tree)
+
+
         self.btn_create_tree.clicked.connect(self.create_tree)
         self.btn_add_node.clicked.connect(self.add_node)
         self.btn_remove_node.clicked.connect(self.remove_node)
@@ -26,6 +32,7 @@ class MainWindow(QMainWindow):
         self.central_layout.addWidget(self.btn_create_tree)
         self.central_layout.addWidget(self.btn_add_node)
         self.central_layout.addWidget(self.btn_remove_node)
+        self.central_layout.addWidget(self.search_bar)
 
         self.setCentralWidget(self.central_widget)
         self.setGeometry(100, 100, 800, 600)
@@ -56,6 +63,18 @@ class MainWindow(QMainWindow):
                     self.tree.insert(key, value)
                     self.visualize_tree()
 
+
+    def search_in_tree(self):
+        if self.tree and self.search_bar.text():
+            key_or_value = self.search_bar.text()
+            result = self.tree.search(key_or_value)
+            if result:
+                print(f"Key found: {result.keys}, Value: {result.value}")
+            else:
+                print("Key not found in the tree.")
+
+
+                
     def remove_node(self):
         self.visualize_tree()
 
