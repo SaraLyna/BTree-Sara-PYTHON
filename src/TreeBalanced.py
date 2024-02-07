@@ -148,6 +148,25 @@ class TreeBalanced:
                 new_parent.childs = [node, new_node]
                 node.parent = new_node.parent = new_parent
                 self.root = new_parent
+                
+    def search_for_deletion(self, key, node):
+        if not node.childs:
+            return node
+            
+            
+           #a completer 
+           
+           
+    def delete(self, key, value=None):
+        if not self.root:
+            self.root = Node(key, value)
+            return
+            
+             #a completer
+             
+             
+                         
+    def delete_in_node(self,node,key, value=None):
     
-    
+    # a completer 
     
