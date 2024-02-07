@@ -78,7 +78,7 @@ ou via la commande `pipenv run test`
 - Ajout de la fonction search_for_insertion : recherche l'emplacement approprié pour insérer une clé.
 - commencement des tests sur l'insertion.
 
-
+- Tests finis sur les méthodes d'insertion , à priori tout fonctionne très bien.
 
 ## Insertion dans un Arbre B
 
