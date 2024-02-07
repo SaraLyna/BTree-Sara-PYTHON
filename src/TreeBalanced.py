@@ -60,11 +60,11 @@ class TreeBalanced:
         for i in range(len(node.childs)):
             if node.childs[i] and not self.is_btree(node.childs[i]):
                 return False
-            
-        
+
+
 
         return True
-    
+
     def is_balanced(self, node):
         depth = self.get_depth(node)
         if depth == -1:
@@ -98,24 +98,24 @@ class TreeBalanced:
             for child in node.childs:
                 count += count_keys(child)
             return count
-            
+
         total_nodes = len(self.linearize()) - 1
         keys_count = count_keys(self.root)
         coverage_ratio = (keys_count / total_nodes) * 100
         return coverage_ratio
-    
-    
-    
+
+
+
     def search_for_insertion(self, key, node):
         if not node.childs:
             return node
-        
+
         i = 0
         while i < len(node.keys) and key > node.keys[i]:
             i += 1
 
         return self.search_for_insertion(key, node.childs[i])
-    
+
     def insert(self, key, value=None):
         if not self.root:
             self.root = Node(key, value)
@@ -124,10 +124,10 @@ class TreeBalanced:
         node = self.search_for_insertion(key, self.root)
         self.insert_in_node(node, key, value)
 
-    
+
     def insert_in_node(self, node, key, value=None):
         node.keys.append(key)
-        node.keys.sort()  
+        node.keys.sort()
 
         if len(node.keys) > self.degree - 1:
             middle_index = len(node.keys) // 2
@@ -148,25 +148,33 @@ class TreeBalanced:
                 new_parent.childs = [node, new_node]
                 node.parent = new_node.parent = new_parent
                 self.root = new_parent
-                
+
     def search_for_deletion(self, key, node):
         if not node.childs:
             return node
-            
-            
-           #a completer 
-           
-           
+
+        i = 0
+        while i < len(node.keys) and key > node.keys[i]:
+            i += 1
+
+        if i < len(node.keys) and key == node.keys[i]:
+            return node
+        else:
+            return self.search_for_deletion(key, node.childs[i])
+
+
+           #a tester
+
+
     def delete(self, key, value=None):
         if not self.root:
             self.root = Node(key, value)
             return
-            
+
              #a completer
-             
-             
-                         
+
+
+
     def delete_in_node(self,node,key, value=None):
-    
-    # a completer 
-    
+
+    # a completer
