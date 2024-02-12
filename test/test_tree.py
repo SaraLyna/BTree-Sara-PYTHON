@@ -1,3 +1,6 @@
+import sys
+sys.path.insert(0, '../src')
+
 from Node import Node
 from TreeBalanced import TreeBalanced
 
@@ -173,7 +176,7 @@ def test_post_conditions():
     size_before = len(tree.linearize())
            
     tree.insert(7)
-    assert (len(tree.linearize()), size_before + 1)
+    assert len(tree.linearize()), size_before + 1
 
         
        

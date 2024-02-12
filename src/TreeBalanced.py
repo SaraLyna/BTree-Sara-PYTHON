@@ -160,21 +160,17 @@ class TreeBalanced:
         if i < len(node.keys) and key == node.keys[i]:
             return node
         else:
-            return self.search_for_deletion(key, node.childs[i])
-
-
-           #a tester
+            return self.search_for_deletion(key, node.childs[i]) #a tester
+	    
 
 
     def delete(self, key, value=None):
         if not self.root:
             self.root = Node(key, value)
-            return
-
-             #a completer
+            return #a completer
 
 
 
     def delete_in_node(self,node,key, value=None):
 
-    # a completer
+    	pass # a completer
