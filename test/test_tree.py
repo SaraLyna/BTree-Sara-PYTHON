@@ -150,7 +150,9 @@ def test_insertion_multiple_keys():
     assert (tree.search_for_insertion(6,tree.root)) is not None
     assert (tree.search_for_insertion(5,tree.root)) is not None 
     assert (tree.search_for_insertion(3,tree.root)) is not None 
-    assert (tree.root.keys[0] == 5)  
+    assert (tree.root.keys[0] == 5)
+    assert tree.is_balanced(tree.root)
+  
     
         
    
@@ -163,6 +165,9 @@ def test_insertion_list_of_keys():
         tree.insert(keys) 
     for key in keys:
         assert (tree.search_for_insertion(key,tree.root)) is not None
+    assert tree.is_balanced(tree.root)
+
+    
             
                   
     
@@ -177,6 +182,8 @@ def test_post_conditions():
            
     tree.insert(7)
     assert len(tree.linearize()), size_before + 1
+    assert tree.is_balanced(tree.root)
+
 
         
        
