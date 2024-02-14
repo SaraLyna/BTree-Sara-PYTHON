@@ -1,6 +1,4 @@
- # @author Sara Lyna OUYAHIA
- # @date 10/01/2024
- 
+
  # classe qui gére les noeuds
  
 class Node:
