@@ -1,5 +1,6 @@
 import sys
-sys.path.insert(0, '../src')
+
+sys.path.insert(0, "../src")
 
 from Node import Node
 
@@ -39,6 +40,3 @@ def test_node():
     assert node1.get_size() == 5
 
     print("Tous les tests sont passés ")
-
-
-    

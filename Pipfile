@@ -18,4 +18,4 @@ exceptiongroup = "*"
 [scripts]
 test = "pytest"
 lint = "ruff check"
-format = "sh -c 'ruff check --fix && ruff format' "
+format = "sh -c 'ruff check --fix ; ruff format' "
