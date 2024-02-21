@@ -39,4 +39,5 @@ def test_node():
     node1.add_child(node5)
     assert node1.get_size() == 5
 
-    print("Tous les tests sont passés ")
+    # Test de is_leaf pour verifier si un noeud est une feuille
+    assert not node1.is_leaf()
