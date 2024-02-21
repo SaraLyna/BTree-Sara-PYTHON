@@ -192,22 +192,6 @@ class TreeBalanced:
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     def _get_predecessor(self, node, i):
         current = node.childs[i]
         while not current.is_leaf():

@@ -110,10 +110,10 @@ L'opération d'insertion dans un arbre B se déroule en plusieurs étapes :
 ### Semaine 6 :
 #### Mercredi 14 Février :
 - Modifications du fichier Pipfile.
--
--
--
--
+- Réflexion sur l'implémentation de la suppression.
+
+
+
 
 ### Semaine 7 : 
 
