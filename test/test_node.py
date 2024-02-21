@@ -41,3 +41,4 @@ def test_node():
 
     # Test de is_leaf pour verifier si un noeud est une feuille
     assert not node1.is_leaf()
+    
