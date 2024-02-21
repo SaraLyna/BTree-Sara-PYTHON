@@ -38,4 +38,7 @@ class Node:
         child_node.parent = self
         self.childs.append(child_node)
         self.size += child_node.size
+        
+    def is_leaf(self):
+        return len(self.childs) == 0
  
