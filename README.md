@@ -161,6 +161,12 @@ La suppression dans un arbre B-Tree suit un algorithme spécifique pour garantir
 
 
 
+
+## UML DES CLASSES 
+
+
+
+
 ![UML DU PROJET](classes_tree_Balanced.png)
 
 
