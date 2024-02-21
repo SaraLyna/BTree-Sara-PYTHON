@@ -105,6 +105,8 @@ L'opération d'insertion dans un arbre B se déroule en plusieurs étapes :
 
 4. **Réorganisation de l'arbre :** Si le nœud divisé avait un parent, la clé médiane est insérée dans le parent. Sinon, un nouveau nœud parent est créé, et les nœuds d'origine et nouveau sont définis comme enfants de ce parent. Si le nœud d'origine était la racine de l'arbre, la racine de l'arbre est mise à jour avec le nouveau parent.
 
+
+
 ### Semaine 6 :
 #### Mercredi 14 Février :
 - Modifications du fichier Pipfile.
@@ -113,14 +115,50 @@ L'opération d'insertion dans un arbre B se déroule en plusieurs étapes :
 -
 -
 
+### Semaine 7 : 
+
+#### Mercredi 21 Février :
+- étudier tous les cas possibles lors de la suppression d'une clé
+- ajout de quelques test pour la classe Node
+- début d'implementation de la suppression
+- création de la methode _delete qui supprime une clé
+- création des méthodes auxiliaires qui permet la restructuration du code et facilite sa compréhension.
 
 
 
+### Suppression dans un Arbre B-Tree
 
-## Suppression dans un Arbre B
+La suppression dans un arbre B-Tree suit un algorithme spécifique pour garantir que la structure de l'arbre reste équilibrée tout en supprimant une clé spécifiée.
+
+#### Algorithme de Suppression
+
+1. **Vérification de la présence de la racine :** 
+    - Vérifie si l'arbre a une racine. Si la racine est vide, la suppression est abandonnée car il n'y a rien à supprimer.
+
+2. **Suppression récursive :** 
+    - La suppression commence par appeler une méthode de suppression récursive `_delete` en passant la racine de l'arbre et la clé à supprimer comme arguments.
+
+3. **Recherche de la clé :**
+    - Parcourt les clés du nœud actuel pour trouver l'index de la clé à supprimer.
+
+4. **Cas de la clé trouvée :**
+    - Si la clé à supprimer est trouvée dans le nœud actuel :
+        - Si le nœud est une feuille, la clé est supprimée.
+        - Sinon, la méthode détermine s'il existe des clés successeurs ou prédécesseurs dans les nœuds enfants pour remplacer la clé à supprimer.
+            - Si des successeurs ou prédécesseurs existent et ont suffisamment de clés, la méthode met à jour la clé actuelle avec le successeur ou le prédécesseur approprié, puis répète la suppression dans le nœud enfant correspondant.
+            - Sinon, la méthode fusionne le nœud avec son voisin et poursuit la suppression dans le nœud fusionné.
+
+5. **Cas de clé non trouvée :**
+    - Si la clé n'est pas trouvée dans le nœud actuel, la méthode poursuit la recherche dans le nœud enfant approprié, en fonction de la valeur de la clé et de la disposition des clés dans le nœud actuel.
+
+6. **Méthodes Auxiliaires :**
+    - Plusieurs méthodes auxiliaires sont utilisées pour aider à la suppression :
+        - `_get_predecessor` et `_get_successor` : pour obtenir respectivement le prédécesseur et le successeur d'une clé.
+        - `_merge` : pour fusionner un nœud avec son voisin.
+        - `_fill` : pour remplir un nœud en empruntant une clé d'un nœud voisin si nécessaire.
+        - `_borrow_from_prev` et `_borrow_from_next` : pour emprunter une clé d'un nœud voisin précédent ou suivant.
 
 
-- Logique à écrire
 
 
 
