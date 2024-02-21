@@ -150,20 +150,8 @@ class TreeBalanced:
                 new_parent.childs = [node, new_node]
                 node.parent = new_node.parent = new_parent
                 self.root = new_parent
-
-    def search_for_deletion(self, key, node):
-        if not node.childs:
-            return node
-
-        i = 0
-        while i < len(node.keys) and key > node.keys[i]:
-            i += 1
-
-        if i < len(node.keys) and key == node.keys[i]:
-            return node
-        else:
-            return self.search_for_deletion(key, node.childs[i]) 
         
+    
     
     def delete(self, key):
         if not self.root:
@@ -172,12 +160,93 @@ class TreeBalanced:
         self._delete(self.root, key)
         
     
-        
-    
-        
-    
-        
-    
-        
+    def _delete(self, node, key):
+        i = 0
+        while i < len(node.keys) and key > node.keys[i]:
+            i += 1
 
-	    
+        if i < len(node.keys) and key == node.keys[i]:
+            if node.childs[i].is_leaf():
+                del node.keys[i]
+            else:
+                if len(node.childs[i].keys) >= self.degree:
+                    predecessor_key = self._get_predecessor(node, i)
+                    node.keys[i] = predecessor_key
+                    self._delete(node.childs[i], predecessor_key)
+                elif len(node.childs[i + 1].keys) >= self.degree:
+                    successor_key = self._get_successor(node, i)
+                    node.keys[i] = successor_key
+                    self._delete(node.childs[i + 1], successor_key)
+                else:
+                    self._merge(node, i)
+                    self._delete(node.childs[i], key)
+        else:
+            if node.childs[i].is_leaf():
+                return
+            if len(node.childs[i].keys) < self.degree:
+                self._fill(node, i)
+            if i == len(node.keys) or key < node.keys[i]:
+                self._delete(node.childs[i], key)
+            else:
+                self._delete(node.childs[i + 1], key)
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    def _get_predecessor(self, node, i):
+        current = node.childs[i]
+        while not current.is_leaf():
+            current = current.childs[-1]
+        return current.keys[-1]
+    
+    
+    def _get_successor(self, node, i):
+        current = node.childs[i + 1]
+        while not current.is_leaf():
+            current = current.childs[0]
+        return current.keys[0]
+        
+    
+    def _merge(self, node, i):
+        child = node.childs[i]
+        sibling = node.childs[i + 1]
+        child.keys.append(node.keys[i])
+        child.keys.extend(sibling.keys)
+        if not child.is_leaf():
+            child.childs.extend(sibling.childs)
+        del node.keys[i]
+        del node.childs[i + 1]
+        del sibling
+       
+       
+        
+    def _fill(self, node, i):
+        if i != 0 and len(node.childs[i - 1].keys) >= self.degree:
+            self._borrow_from_prev(node, i)
+        elif i != len(node.keys) and len(node.childs[i + 1].keys) >= self.degree:
+            self._borrow_from_next(node, i)
+        else:
+            if i != len(node.keys):
+                self._merge(node, i)
+            else:
+                self._merge(node, i - 1)
+               
+
+        
+        
+        
