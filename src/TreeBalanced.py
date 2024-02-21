@@ -245,6 +245,27 @@ class TreeBalanced:
                 self._merge(node, i)
             else:
                 self._merge(node, i - 1)
+                
+                
+    
+    def _borrow_from_prev(self, node, i):
+            child = node.childs[i]
+            sibling = node.childs[i - 1]
+            child.keys.insert(0, node.keys[i - 1])
+            if not child.is_leaf():
+                child.childs.insert(0, sibling.childs.pop())
+            node.keys[i - 1] = sibling.keys.pop()
+        
+
+
+
+    def _borrow_from_next(self, node, i):
+        child = node.childs[i]
+        sibling = node.childs[i + 1]
+        child.keys.append(node.keys[i])
+        if not child.is_leaf():
+            child.childs.append(sibling.childs.pop(0))
+        node.keys[i] = sibling.keys.pop(0)
                
 
         
