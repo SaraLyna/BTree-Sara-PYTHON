@@ -126,7 +126,7 @@ L'opération d'insertion dans un arbre B se déroule en plusieurs étapes :
 
 
 
-### Suppression dans un Arbre B-Tree
+## Suppression dans un Arbre B-Tree
 
 La suppression dans un arbre B-Tree suit un algorithme spécifique pour garantir que la structure de l'arbre reste équilibrée tout en supprimant une clé spécifiée.
 
