@@ -1,3 +1,5 @@
+from graphviz import Digraph
+
 from Node import Node
 
 
@@ -228,6 +230,19 @@ class TreeBalanced:
 
         parent.childs.pop(index + 1)
                
+               
+    def visualize_tree(self):
+        graph = Digraph()
+        self._add_nodes_and_edges(graph, self.root)
+        return graph
+
+    def _add_nodes_and_edges(self, graph, node):
+        if node:
+            graph.node(str(node), label=str(node.keys))
+            for child in node.childs:
+                if child:
+                    self._add_nodes_and_edges(graph, child)
+                    graph.edge(str(node), str(child))
 
         
         

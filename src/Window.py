@@ -1,5 +1,5 @@
 import sys
-from PyQt5.QtWidgets import QApplication, QMainWindow, QGraphicsScene, QGraphicsView, QVBoxLayout, QWidget, QPushButton, QLineEdit, QInputDialog
+from PyQt5.QtWidgets import QApplication, QMainWindow, QGraphicsScene, QGraphicsView, QVBoxLayout, QWidget, QPushButton, QLineEdit, QInputDialog, QLabel
 from PyQt5.QtGui import QPixmap
 from graphviz import Digraph
 from TreeBalanced import TreeBalanced, Node
@@ -20,6 +20,8 @@ class MainWindow(QMainWindow):
         self.search_bar = QLineEdit(self)
         self.search_bar.setPlaceholderText("Search key or value...")
         self.search_bar.textChanged.connect(self.search_in_tree)
+        
+        self.search_result_label = QLabel(self)
 
 
         self.btn_create_tree.clicked.connect(self.create_tree)
@@ -33,6 +35,7 @@ class MainWindow(QMainWindow):
         self.central_layout.addWidget(self.btn_add_node)
         self.central_layout.addWidget(self.btn_remove_node)
         self.central_layout.addWidget(self.search_bar)
+        self.central_layout.addWidget(self.search_result_label)
 
         self.setCentralWidget(self.central_widget)
         self.setGeometry(100, 100, 800, 600)
@@ -66,17 +69,29 @@ class MainWindow(QMainWindow):
 
     def search_in_tree(self):
         if self.tree and self.search_bar.text():
-            key_or_value = self.search_bar.text()
+            key_or_value = int(self.search_bar.text())
             result = self.tree.search(key_or_value)
             if result:
-                print(f"Key found: {result.keys}, Value: {result.value}")
+                self.search_result_label.setText(f"Key found: {result.keys}, Value: {result.value}")
             else:
-                print("Key not found in the tree.")
+                self.search_result_label.setText("Key not found in the tree.")
+                
+        else:
+            self.search_result_label.setText("")
 
 
                 
     def remove_node(self):
-        self.visualize_tree()
+        if self.tree:
+            key, ok = QInputDialog.getInt(self, "Delete node", "Enter the key to delete :")
+            if ok:
+                if self.tree.delete(key):
+                    self.visualize_tree()
+                    self.search_result_label.setText("Node deleted.")
+                else:
+                    self.search_result_label.setText("Node not found.")
+            else:
+                self.search_result_label.setText("Operation cancelled.")
 
 
 if __name__ == "__main__":
