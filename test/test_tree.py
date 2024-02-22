@@ -200,3 +200,5 @@ def test_post_conditions():
     tree.insert(7)
     assert len(tree.linearize()), size_before + 1
     assert tree.is_balanced(tree.root)
+    
+

@@ -153,11 +153,14 @@ class TreeBalanced:
         
     
     
-    def delete(self, key):
-        if not self.root:
-            return
-
-        self._delete(self.root, key)
+    def delete(self, keys_or_key):
+        if isinstance(keys_or_key, list):
+            for key in keys_or_key:
+                if not self.suppression(key):
+                    return False
+            return True
+        else:
+            return self._delete(keys_or_key)
         
     
     def _delete(self, node, key):
