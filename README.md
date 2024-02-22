@@ -113,18 +113,19 @@ L'opération d'insertion dans un arbre B se déroule en plusieurs étapes :
 - Réflexion sur l'implémentation de la suppression.
 
 
-
-
 ### Semaine 7 : 
 
 #### Mercredi 21 Février :
 - étudier tous les cas possibles lors de la suppression d'une clé
-- ajout de quelques test pour la classe Node
+- ajout de quelques test pour la classe Node (is_leaf())
 - début d'implementation de la suppression
 - création de la methode _delete qui supprime une clé
 - création des méthodes auxiliaires qui permet la restructuration du code et facilite sa compréhension.
-
-
+- Modifications :
+- Codage de la méthode deleteK(keys_or_key), qui suprrime une clé ou une liste de clés selon les cas.
+Si keys_or_key est une liste, la méthode parcourt chaque clé dans la liste et appelle la méthode delete(key) pour la supprimer de l'arbre. 
+- Codage de la méthode _delete(node, key), qui est une méthode récursive qui supprime une clé à partir d'un noeud donné.
+- Codage de la méthode delete(key), qui lance la suppression d'une clé specifique en appelant la méthode _delete(node, key).
 
 ## Suppression dans un Arbre B-Tree
 
