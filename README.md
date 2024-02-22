@@ -93,19 +93,6 @@ Commandes pour créer l'UML :
 - Ajout des options de recherche de clé/valeur dans la classe window.
 - Suppression des fichiers inutiles.
 
-## Insertion dans un Arbre B
-
-L'opération d'insertion dans un arbre B se déroule en plusieurs étapes :
-
-1. **Recherche de l'endroit d'insertion :** La clé à insérer est recherchée dans l'arbre B en descendant depuis la racine jusqu'à atteindre une feuille appropriée.
-
-2. **Insertion dans le nœud :** Une fois l'endroit d'insertion trouvé, la clé est insérée dans le nœud approprié. Si le nœud dépasse sa capacité maximale après l'insertion, il est divisé en deux parties.
-
-3. **Division/éclatement du nœud :** La division du nœud se fait en extrayant la clé médiane et en créant un nouveau nœud pour contenir les clés de droite. Les clés et les enfants du nœud d'origine sont mis à jour pour ne contenir que les clés et les enfants de gauche.
-
-4. **Réorganisation de l'arbre :** Si le nœud divisé avait un parent, la clé médiane est insérée dans le parent. Sinon, un nouveau nœud parent est créé, et les nœuds d'origine et nouveau sont définis comme enfants de ce parent. Si le nœud d'origine était la racine de l'arbre, la racine de l'arbre est mise à jour avec le nouveau parent.
-
-
 
 ### Semaine 6 :
 #### Mercredi 14 Février :
@@ -114,7 +101,6 @@ L'opération d'insertion dans un arbre B se déroule en plusieurs étapes :
 
 
 ### Semaine 7 : 
-
 #### Mercredi 21 Février :
 - étudier tous les cas possibles lors de la suppression d'une clé
 - ajout de quelques test pour la classe Node (is_leaf())
@@ -126,51 +112,17 @@ L'opération d'insertion dans un arbre B se déroule en plusieurs étapes :
 Si keys_or_key est une liste, la méthode parcourt chaque clé dans la liste et appelle la méthode delete(key) pour la supprimer de l'arbre. 
 - Codage de la méthode _delete(node, key), qui est une méthode récursive qui supprime une clé à partir d'un noeud donné.
 - Codage de la méthode delete(key), qui lance la suppression d'une clé specifique en appelant la méthode _delete(node, key).
-
-## Suppression dans un Arbre B-Tree
-
-La suppression dans un arbre B-Tree suit un algorithme spécifique pour garantir que la structure de l'arbre reste équilibrée tout en supprimant une clé spécifiée.
-
-#### Algorithme de Suppression
-
-1. **Vérification de la présence de la racine :** 
-    - Vérifie si l'arbre a une racine. Si la racine est vide, la suppression est abandonnée car il n'y a rien à supprimer.
-
-2. **Suppression récursive :** 
-    - La suppression commence par appeler une méthode de suppression récursive `_delete` en passant la racine de l'arbre et la clé à supprimer comme arguments.
-
-3. **Recherche de la clé :**
-    - Parcourt les clés du nœud actuel pour trouver l'index de la clé à supprimer.
-
-4. **Cas de la clé trouvée :**
-    - Si la clé à supprimer est trouvée dans le nœud actuel :
-        - Si le nœud est une feuille, la clé est supprimée.
-        - Sinon, la méthode détermine s'il existe des clés successeurs ou prédécesseurs dans les nœuds enfants pour remplacer la clé à supprimer.
-            - Si des successeurs ou prédécesseurs existent et ont suffisamment de clés, la méthode met à jour la clé actuelle avec le successeur ou le prédécesseur approprié, puis répète la suppression dans le nœud enfant correspondant.
-            - Sinon, la méthode fusionne le nœud avec son voisin et poursuit la suppression dans le nœud fusionné.
-
-5. **Cas de clé non trouvée :**
-    - Si la clé n'est pas trouvée dans le nœud actuel, la méthode poursuit la recherche dans le nœud enfant approprié, en fonction de la valeur de la clé et de la disposition des clés dans le nœud actuel.
-
-6. **Méthodes Auxiliaires :**
-    - Plusieurs méthodes auxiliaires sont utilisées pour aider à la suppression :
-        - `_get_predecessor` et `_get_successor` : pour obtenir respectivement le prédécesseur et le successeur d'une clé.
-        - `_merge` : pour fusionner un nœud avec son voisin.
-        - `_fill` : pour remplir un nœud en empruntant une clé d'un nœud voisin si nécessaire.
-        - `_borrow_from_prev` et `_borrow_from_next` : pour emprunter une clé d'un nœud voisin précédent ou suivant.
-
-
+- la méthode _fill() fait partie des méthodes auciliaires, elle est appelée si un noeud enfant a été réduit à une taille inferieure apres une supression, elle réorganise les clés entre les différents noeuds fils,
+si l'un des noeufs fils a plus de clés que l'autre elle effectue une rotation à droite ou à gauche en fonction du frère disponible, sinon elle fusionne l'enfant avec son frère.
+donc _rotate_right() et _rotate_left() et _merge() viennent apres.
+- Codage des tests selon la logique donnée dans le cours.
 
 
 
 ## UML DES CLASSES 
 
 
-
-
 ![UML DU PROJET](classes_tree_Balanced.png)
-
-
 
 
 ## Sources à regarder :
@@ -196,7 +148,41 @@ indexes" (PDF), Acta Informatica`
 - Ray tracer ? (gémoétrie + maths)
 
 
-
-
 ## Explication du fonctionnement du projet et des classes :
-À suivre ...
+
+### Insertion dans un Arbre B
+
+L'opération d'insertion dans un arbre B se déroule en plusieurs étapes :
+
+1. **Recherche de l'endroit d'insertion :** La clé à insérer est recherchée dans l'arbre B en descendant depuis la racine jusqu'à atteindre une feuille appropriée.
+
+2. **Insertion dans le nœud :** Une fois l'endroit d'insertion trouvé, la clé est insérée dans le nœud approprié. Si le nœud dépasse sa capacité maximale après l'insertion, il est divisé en deux parties.
+
+3. **Division/éclatement du nœud :** La division du nœud se fait en extrayant la clé médiane et en créant un nouveau nœud pour contenir les clés de droite. Les clés et les enfants du nœud d'origine sont mis à jour pour ne contenir que les clés et les enfants de gauche.
+
+4. **Réorganisation de l'arbre :** Si le nœud divisé avait un parent, la clé médiane est insérée dans le parent. Sinon, un nouveau nœud parent est créé, et les nœuds d'origine et nouveau sont définis comme enfants de ce parent. Si le nœud d'origine était la racine de l'arbre, la racine de l'arbre est mise à jour avec le nouveau parent.
+
+
+### Suppression dans un Arbre B-Tree
+
+La suppression dans un arbre B-Tree suit un algorithme spécifique pour garantir que la structure de l'arbre reste équilibrée tout en supprimant une clé spécifiée.
+
+1. **Vérification de la présence de la racine :** 
+    - Vérifie si l'arbre a une racine. Si la racine est vide, la suppression est abandonnée car il n'y a rien à supprimer.
+
+2. **Suppression récursive :** 
+    - La suppression commence par appeler une méthode de suppression récursive `_delete` en passant la racine de l'arbre(un noeud specifique au début) et la clé à supprimer comme arguments.
+
+3. **Recherche de la clé :**
+    - Parcourt les clés du nœud actuel pour trouver l'index de la clé à supprimer.
+
+
+4. **Cas de clé non trouvée :**
+    - Si la clé n'est pas trouvée dans le nœud actuel, la méthode poursuit la recherche dans le nœud enfant approprié, en fonction de la valeur de la clé et de la disposition des clés dans le nœud actuel.
+
+5. **Méthodes Auxiliaires :**
+    - Plusieurs méthodes auxiliaires sont utilisées pour aider à la suppression :
+        - `_merge` : pour fusionner un nœud avec son voisin.
+        - `_fill` : pour remplir un nœud en empruntant une clé d'un nœud voisin si nécessaire.
+        - `_rotate_right` et `_rotate_left` comme expliqué plus haut.
+       
