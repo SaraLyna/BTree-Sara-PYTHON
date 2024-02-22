@@ -185,4 +185,9 @@ La suppression dans un arbre B-Tree suit un algorithme spécifique pour garantir
         - `_merge` : pour fusionner un nœud avec son voisin.
         - `_fill` : pour remplir un nœud en empruntant une clé d'un nœud voisin si nécessaire.
         - `_rotate_right` et `_rotate_left` comme expliqué plus haut.
+        
+### Affichage et window
+Pour l'affichage de la fenetre on utilisera la commande : 
+- `python3 Window.c`
+
        
