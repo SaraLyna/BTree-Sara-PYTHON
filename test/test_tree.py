@@ -201,4 +201,28 @@ def test_post_conditions():
     assert len(tree.linearize()), size_before + 1
     assert tree.is_balanced(tree.root)
     
+def test_delete_single_key():
+    node1, node2, node3, node4, node5, node6, node7 = set_nodes()
+    tree = TreeBalanced(100)
+    keys = [10, 5, 15, 2, 7, 12, 17]
+    for key in keys:
+       tree.insert(key)
+       
+    assert (tree.search_for_insertion(3, tree.root)) is not None
+     
+
+    assert (tree.delete(5)) 
+    assert not (tree.delete(8)) 
+    
+def test_delete_multiple_keys():
+    tree = TreeBalanced(100)  
+    keys = [10, 5, 15, 2, 7, 12, 17]
+    for key in keys:
+       tree.insert(key)
+       
+
+
+    assert (tree.deleteK([5, 7]))  
+    assert not (tree.deleteK([8, 9])) 
+    
 

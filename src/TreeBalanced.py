@@ -153,106 +153,80 @@ class TreeBalanced:
         
     
     
-    def delete(self, keys_or_key):
+    def deleteK(self, keys_or_key):
         if isinstance(keys_or_key, list):
+            success = True
             for key in keys_or_key:
-                if not self.suppression(key):
-                    return False
-            return True
+                if not self.delete(key):
+                    success = False
+            return success
         else:
-            return self._delete(keys_or_key)
+            return self.delete(keys_or_key)
+            
+            
+    def delete(self, key):
+        if not self.root:
+            return False
+
+        return self._delete(self.root, key) 
+        
         
     
     def _delete(self, node, key):
-        i = 0
-        while i < len(node.keys) and key > node.keys[i]:
-            i += 1
+        if key in node.keys:
+            node.keys.remove(key)
+            return True
 
-        if i < len(node.keys) and key == node.keys[i]:
-            if node.childs[i].is_leaf():
-                del node.keys[i]
-            else:
-                if len(node.childs[i].keys) >= self.degree:
-                    predecessor_key = self._get_predecessor(node, i)
-                    node.keys[i] = predecessor_key
-                    self._delete(node.childs[i], predecessor_key)
-                elif len(node.childs[i + 1].keys) >= self.degree:
-                    successor_key = self._get_successor(node, i)
-                    node.keys[i] = successor_key
-                    self._delete(node.childs[i + 1], successor_key)
-                else:
-                    self._merge(node, i)
-                    self._delete(node.childs[i], key)
-        else:
-            if node.childs[i].is_leaf():
-                return
-            if len(node.childs[i].keys) < self.degree:
-                self._fill(node, i)
-            if i == len(node.keys) or key < node.keys[i]:
-                self._delete(node.childs[i], key)
-            else:
-                self._delete(node.childs[i + 1], key)
-    
-    
-    
-    def _get_predecessor(self, node, i):
-        current = node.childs[i]
-        while not current.is_leaf():
-            current = current.childs[-1]
-        return current.keys[-1]
-    
-    
-    def _get_successor(self, node, i):
-        current = node.childs[i + 1]
-        while not current.is_leaf():
-            current = current.childs[0]
-        return current.keys[0]
-        
-    
-    def _merge(self, node, i):
-        child = node.childs[i]
-        sibling = node.childs[i + 1]
-        child.keys.append(node.keys[i])
-        child.keys.extend(sibling.keys)
-        if not child.is_leaf():
-            child.childs.extend(sibling.childs)
-        del node.keys[i]
-        del node.childs[i + 1]
-        del sibling
-       
-       
-        
-    def _fill(self, node, i):
-        if i != 0 and len(node.childs[i - 1].keys) >= self.degree:
-            self._borrow_from_prev(node, i)
-        elif i != len(node.keys) and len(node.childs[i + 1].keys) >= self.degree:
-            self._borrow_from_next(node, i)
-        else:
-            if i != len(node.keys):
-                self._merge(node, i)
-            else:
-                self._merge(node, i - 1)
-                
-                
-    
-    def _borrow_from_prev(self, node, i):
-            child = node.childs[i]
-            sibling = node.childs[i - 1]
-            child.keys.insert(0, node.keys[i - 1])
-            if not child.is_leaf():
-                child.childs.insert(0, sibling.childs.pop())
-            node.keys[i - 1] = sibling.keys.pop()
-        
+        for child in node.childs:
+            if self._delete(child, key):
+                if len(child.keys) < (self.degree - 1) // 2:
+                    self._fill(node, node.childs.index(child))
+                return True
 
+        return False
 
+    def _fill(self, parent, index):
+        left_sibling = parent.childs[index - 1] if index > 0 else None
+        right_sibling = parent.childs[index + 1] if index < len(parent.childs) - 1 else None
 
-    def _borrow_from_next(self, node, i):
-        child = node.childs[i]
-        sibling = node.childs[i + 1]
-        child.keys.append(node.keys[i])
-        if not child.is_leaf():
-            child.childs.append(sibling.childs.pop(0))
-        node.keys[i] = sibling.keys.pop(0)
+        if left_sibling and len(left_sibling.keys) > (self.degree - 1) // 2:
+            self._rotate_right(parent, index)
+        elif right_sibling and len(right_sibling.keys) > (self.degree - 1) // 2:
+            self._rotate_left(parent, index)
+        elif left_sibling:
+            self._merge(parent, index - 1)
+        elif right_sibling:
+            self._merge(parent, index)
+
+    def _rotate_right(self, parent, index):
+        child = parent.childs[index]
+        left_sibling = parent.childs[index - 1]
+
+        child.keys.insert(0, parent.keys[index - 1])
+        parent.keys[index - 1] = left_sibling.keys.pop()
+
+        if child.childs:
+            child.childs.insert(0, left_sibling.childs.pop())
+
+    def _rotate_left(self, parent, index):
+        child = parent.childs[index]
+        right_sibling = parent.childs[index + 1]
+
+        child.keys.append(parent.keys[index])
+        parent.keys[index] = right_sibling.keys.pop(0)
+
+        if child.childs:
+            child.childs.append(right_sibling.childs.pop(0))
+
+    def _merge(self, parent, index):
+        child = parent.childs[index]
+        right_sibling = parent.childs[index + 1]
+
+        child.keys.append(parent.keys.pop(index))
+        child.keys.extend(right_sibling.keys)
+        child.childs.extend(right_sibling.childs)
+
+        parent.childs.pop(index + 1)
                
 
         
