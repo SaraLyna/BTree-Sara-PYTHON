@@ -209,8 +209,6 @@ def test_delete_single_key():
        tree.insert(key)
        
     assert (tree.search_for_insertion(3, tree.root)) is not None
-     
-
     assert (tree.delete(5)) 
     assert not (tree.delete(8)) 
     
@@ -220,9 +218,8 @@ def test_delete_multiple_keys():
     for key in keys:
        tree.insert(key)
        
-
-
-    assert (tree.deleteK([5, 7]))  
+    assert tree.deleteK(keys)      	
+    assert not (tree.deleteK([5, 7]))  
     assert not (tree.deleteK([8, 9])) 
     
 
