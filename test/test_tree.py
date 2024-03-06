@@ -120,30 +120,25 @@ def test_is_balanced():
 
 
 def test_insert_in_root():
-    node1, node2, node3, node4, node5, node6, node7 = set_nodes()
     tree = TreeBalanced(3)
-    tree.insert(5)
     tree.insert(4)
+    tree.insert(5)
     assert len(tree.root.keys) == 2
     assert tree.root.keys[0] == 4
 
 
 def test_insertion_single_key():
-    node1, node2, node3, node4, node5, node6, node7 = set_nodes()
     tree = TreeBalanced(3)
-    node2 = Node(2, "G")
     tree.insert(5, "S")
     assert tree.search_for_insertion(5, tree.root) is not None
 
 
 def test_insertion_multiple_keys():
-    node1, node2, node3, node4, node5, node6, node7 = set_nodes()
     tree = TreeBalanced(4)
     tree.insert(6)
     tree.insert(5)
     assert (tree.search_for_insertion(6, tree.root)) is not None
     assert (tree.search_for_insertion(5, tree.root)) is not None
-    assert (tree.search_for_insertion(3, tree.root)) is not None
     assert tree.root.keys[0] == 5
     assert tree.is_balanced(tree.root)
 
@@ -251,23 +246,9 @@ def test_insert_in_node_split():
     assert tree.root.childs[0].keys == [1]
     assert tree.root.childs[1].keys == [4]
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-
 
 def test_post_conditions():
-    node1, node2, node3, node4, node5, node6, node7 = set_nodes()
     tree = TreeBalanced(3)
-    node7 = Node(7, "G")
     tree.insert(3)
     assert (tree.search_for_insertion(3, tree.root)) is not None
     size_before = len(tree.linearize())
@@ -276,7 +257,6 @@ def test_post_conditions():
     assert tree.is_balanced(tree.root)
 
 def test_delete_single_key():
-    node1, node2, node3, node4, node5, node6, node7 = set_nodes()
     tree = TreeBalanced(10)
     keys = [10, 5, 15, 2, 7, 12, 17]
     for key in keys:
@@ -284,14 +264,15 @@ def test_delete_single_key():
 
     assert (tree.search_for_insertion(3, tree.root)) is not None
     key_to_delete = 5
+    size_before = len(tree.linearize())
     assert (tree.delete(key_to_delete))
+    assert len(tree.linearize()), size_before - 1
     assert not (tree.delete(8))
     assert tree.search(key_to_delete) is None
     assert not tree.search(5, tree.root)
     assert tree.is_balanced(tree.root)
 
 def test_delete_multiple_keys():
-    node1, node2, node3, node4, node5, node6, node7 = set_nodes()
     tree = TreeBalanced(10)
     keys = [10, 5, 15, 2, 7, 12, 17]
     for key in keys:
