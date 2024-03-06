@@ -204,8 +204,8 @@ def test_insert_create_new_child():
     node2 = Node(2)
     node4 = Node(4)
     node5 = Node(5)
-    tree.insert(node2.keys[0])
     tree.insert(node4.keys[0])
+    tree.insert(node2.keys[0])
     tree.insert(node5.keys[0])
     assert tree.root.keys == [4]
     tree.insert(node6.keys[0])
@@ -220,12 +220,17 @@ def test_insert_non_empty_tree():
     tree.insert(5, "valeur1")
     tree.insert(3, "valeur2")
     tree.insert(7, "valeur3")
-    tree.insert(4, "valeur4")
+    tree.insert(6, "valeur4")
+    
 
     assert tree.root.keys == [5]
-    assert tree.root.childs[0].keys == [3, 4]
-    assert tree.root.childs[1].keys == [7]
-
+    assert tree.root.childs[0].keys == [3]
+    assert tree.root.childs[1].keys == [6, 7]
+    
+    tree.insert(8)
+    assert tree.root.keys == [5,7] 
+    assert len(tree.root.childs) == 3
+    
     
     
     
