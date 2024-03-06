@@ -246,3 +246,7 @@ class TreeBalanced:
                 if child:
                     self._add_nodes_and_edges(graph, child)
                     graph.edge(str(node), str(child))
+                    
+                    
+    def get_root(self):
+        return self.root
