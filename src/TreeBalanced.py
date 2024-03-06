@@ -8,6 +8,10 @@ class TreeBalanced:
     def __init__(self, degree):
         self.degree = degree
         self.root = None
+        
+    
+    def get_root(self):
+        return self.root
 
 
     def search(self, key, node=None):
@@ -248,5 +252,4 @@ class TreeBalanced:
                     graph.edge(str(node), str(child))
                     
                     
-    def get_root(self):
-        return self.root
+    
