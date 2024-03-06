@@ -120,6 +120,7 @@ def test_is_balanced():
 
 
 def test_insert_in_root():
+    node1, node2, node3, node4, node5, node6, node7 = set_nodes()
     tree = TreeBalanced(3)
     tree.insert(5)
     tree.insert(4)
@@ -180,6 +181,83 @@ def test_insertion_list_of_keys():
         assert (tree.search_for_insertion(key, tree.root)) is not None
     assert tree.is_balanced(tree.root)
 
+def test_789():
+    tree = TreeBalanced(3)
+    tree.insert(8)
+    tree.insert(9)
+    tree.insert(7)
+    assert tree.root.keys[0] == 8
+    
+    
+def test_search_insert():
+    tree = TreeBalanced(3)
+    node1 = Node(1)
+    node2 = Node(2)
+    node3 = Node(3)
+    node1.childs = [node2, node3]
+    assert tree.search_for_insertion(3, node1).keys == [3]
+    
+
+def test_insert_create_new_child():
+    tree = TreeBalanced(3)
+    node6 = Node(6)
+    node2 = Node(2)
+    node4 = Node(4)
+    node5 = Node(5)
+    tree.insert(node4.keys[0])
+    tree.insert(node2.keys[0])
+    tree.insert(node5.keys[0])
+    assert tree.root.keys == [4]
+    tree.insert(node6.keys[0])
+    assert len(tree.root.childs) == 2
+    tree.insert(8)
+    assert len(tree.root.childs) == 3
+    
+    
+def test_insert_non_empty_tree():
+    tree = TreeBalanced(3)
+
+    tree.insert(5, "valeur1")
+    tree.insert(3, "valeur2")
+    tree.insert(7, "valeur3")
+    tree.insert(4, "valeur4")
+
+    assert tree.root.keys == [5]
+    assert tree.root.childs[0].keys == [3, 4]
+    assert tree.root.childs[1].keys == [7]
+
+    
+    
+    
+def test_insert_in_node_split():
+    
+    tree = TreeBalanced(3)
+    
+    node = Node(3)
+    node.keys = [1, 2]
+    
+    tree.insert_in_node(node, 4)
+    
+    assert node.keys == [1]
+    assert tree.root.keys == [2]
+
+    assert len(tree.root.childs) == 2
+    
+    assert tree.root.childs[0].keys == [1]
+    assert tree.root.childs[1].keys == [4]
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+
 
 def test_post_conditions():
     node1, node2, node3, node4, node5, node6, node7 = set_nodes()
@@ -226,16 +304,7 @@ def test_delete_multiple_keys():
     
     
     
-def test_insert_delete():
-    tree = TreeBalanced(3)
-    tree.insert(7)
-    tree.insert(8)
-    tree.insert(9)
-    assert tree.root.keys[0] == 8
-     
-    #tree.delete(8)
-    
-    #assert (tree.root.keys == [])    
+  
     
     
     

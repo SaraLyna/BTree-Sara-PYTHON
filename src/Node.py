@@ -44,3 +44,7 @@ class Node:
 
     def is_leaf(self):
         return len(self.childs) == 0
+    
+    
+    
+    

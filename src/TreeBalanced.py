@@ -116,8 +116,8 @@ class TreeBalanced:
 
     def search_for_insertion(self, key, node):
         if not node.childs:
-            return node
-
+            return node 
+        
         i = 0
         while i < len(node.keys) and key > node.keys[i]:
             i += 1
@@ -133,6 +133,8 @@ class TreeBalanced:
         if node.parent is None:
             self.root = node
         self.insert_in_node(node, key, value)
+        
+
 
 
     def insert_in_node(self, node, key, value=None):
@@ -143,7 +145,7 @@ class TreeBalanced:
             middle_index = len(node.keys) // 2
             middle_key = node.keys[middle_index]
 
-            new_node = Node(node.keys[middle_index + 1], value)
+            new_node = Node(node.keys[middle_index + 1])
             new_node.childs = node.childs[middle_index + 1:]
             for child in new_node.childs:
                 child.parent = new_node
@@ -154,10 +156,13 @@ class TreeBalanced:
             if node.parent:
                 self.insert_in_node(node.parent, middle_key, value)
             else:
-                new_parent = Node(middle_key, value)
-                new_parent.childs = [node, new_node]
-                node.parent = new_node.parent = new_parent
+                new_parent = Node(middle_key)
                 self.root = new_parent
+                self.root.add_child(node)
+                self.root.add_child(new_node)
+                
+
+
 
 
 
