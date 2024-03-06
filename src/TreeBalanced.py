@@ -126,6 +126,8 @@ class TreeBalanced:
             return
 
         node = self.search_for_insertion(key, self.root)
+        if node.parent is None:
+            self.root = node
         self.insert_in_node(node, key, value)
 
 
@@ -152,9 +154,9 @@ class TreeBalanced:
                 new_parent.childs = [node, new_node]
                 node.parent = new_node.parent = new_parent
                 self.root = new_parent
-        
-    
-    
+
+
+
     def deleteK(self, keys_or_key):
         if isinstance(keys_or_key, list):
             success = True
@@ -164,16 +166,17 @@ class TreeBalanced:
             return success
         else:
             return self.delete(keys_or_key)
-            
-            
+
+
     def delete(self, key):
         if not self.root:
             return False
 
-        return self._delete(self.root, key) 
-        
-        
-    
+        return self._delete(self.root, key)
+
+
+
+
     def _delete(self, node, key):
         if key in node.keys:
             node.keys.remove(key)
@@ -229,8 +232,8 @@ class TreeBalanced:
         child.childs.extend(right_sibling.childs)
 
         parent.childs.pop(index + 1)
-               
-               
+
+
     def visualize_tree(self):
         graph = Digraph()
         self._add_nodes_and_edges(graph, self.root)
@@ -243,7 +246,3 @@ class TreeBalanced:
                 if child:
                     self._add_nodes_and_edges(graph, child)
                     graph.edge(str(node), str(child))
-
-        
-        
-        

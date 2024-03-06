@@ -117,7 +117,12 @@ si l'un des noeufs fils a plus de clés que l'autre elle effectue une rotation �
 donc _rotate_right() et _rotate_left() et _merge() viennent apres.
 - Codage des tests selon la logique donnée dans le cours.
 
-
+### Semaine 7 : 
+#### Mercredi 06 Mars :
+- Correction des tests.
+- Importation du module graphviz.
+- Réflexion sur la partie suppression.
+- L'insertion marche très bien.
 
 ## UML DES CLASSES 
 
