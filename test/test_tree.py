@@ -204,8 +204,8 @@ def test_insert_create_new_child():
     node2 = Node(2)
     node4 = Node(4)
     node5 = Node(5)
-    tree.insert(node4.keys[0])
     tree.insert(node2.keys[0])
+    tree.insert(node4.keys[0])
     tree.insert(node5.keys[0])
     assert tree.root.keys == [4]
     tree.insert(node6.keys[0])
