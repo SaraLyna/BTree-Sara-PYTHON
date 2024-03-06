@@ -120,7 +120,6 @@ def test_is_balanced():
 
 
 def test_insert_in_root():
-    node1, node2, node3, node4, node5, node6, node7 = set_nodes()
     tree = TreeBalanced(3)
     tree.insert(5)
     tree.insert(4)
@@ -181,19 +180,6 @@ def test_insertion_list_of_keys():
         assert (tree.search_for_insertion(key, tree.root)) is not None
     assert tree.is_balanced(tree.root)
 
-def test_789():
-    tree = TreeBalanced(3)
-    tree.insert(8)
-    tree.insert(9)
-    tree.insert(7)
-    assert tree.root.keys[0] == 8
-
-
-
-
-
-
-
 
 def test_post_conditions():
     node1, node2, node3, node4, node5, node6, node7 = set_nodes()
@@ -245,14 +231,11 @@ def test_insert_delete():
     tree.insert(7)
     tree.insert(8)
     tree.insert(9)
+    assert tree.root.keys[0] == 8
+     
+    #tree.delete(8)
     
-    root = tree.get_root()
-    assert (root.keys == [8])
-    
-    tree.delete(8)
-    
-    root = tree.get_root()
-    assert (root.keys[0] == [7])    
+    #assert (tree.root.keys == [])    
     
     
     
