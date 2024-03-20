@@ -20,7 +20,7 @@ class MainWindow(QMainWindow):
         self.search_bar = QLineEdit(self)
         self.search_bar.setPlaceholderText("Search key or value...")
         self.search_bar.textChanged.connect(self.search_in_tree)
-        
+
         self.search_result_label = QLabel(self)
 
 
@@ -75,12 +75,12 @@ class MainWindow(QMainWindow):
                 self.search_result_label.setText(f"Key found: {result.keys}, Value: {result.value}")
             else:
                 self.search_result_label.setText("Key not found in the tree.")
-                
+
         else:
             self.search_result_label.setText("")
 
 
-                
+
     def remove_node(self):
         if self.tree:
             key, ok = QInputDialog.getInt(self, "Delete node", "Enter the key to delete :")

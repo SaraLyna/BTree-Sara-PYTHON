@@ -8,8 +8,8 @@ class TreeBalanced:
     def __init__(self, degree):
         self.degree = degree
         self.root = None
-        
-    
+
+
     def get_root(self):
         return self.root
 
@@ -116,8 +116,8 @@ class TreeBalanced:
 
     def search_for_insertion(self, key, node):
         if not node.childs:
-            return node 
-        
+            return node
+
         i = 0
         while i < len(node.keys) and key > node.keys[i]:
             i += 1
@@ -133,7 +133,7 @@ class TreeBalanced:
         if node.parent is None:
             self.root = node
         self.insert_in_node(node, key, value)
-        
+
 
 
 
@@ -161,7 +161,7 @@ class TreeBalanced:
                 self.root = new_parent
                 self.root.add_child(node)
                 self.root.add_child(new_node)
-                
+
 
 
 
@@ -187,18 +187,18 @@ class TreeBalanced:
 
 
 
-    def _delete(self, node, key):
-        if key in node.keys:
-            node.keys.remove(key)
-            return True
-
-        for child in node.childs:
-            if self._delete(child, key):
-                if len(child.keys) < (self.degree - 1) // 2:
-                    self._fill(node, node.childs.index(child))
-                return True
-
-        return False
+    # def _delete(self, node, key):
+    #     if key in node.keys:
+    #         node.keys.remove(key)
+    #         return True
+    #
+    #     for child in node.childs:
+    #         if self._delete(child, key):
+    #             if len(child.keys) < (self.degree - 1) // 2:
+    #                 self._fill(node, node.childs.index(child))
+    #             return True
+    #
+    #     return False
 
     def _fill(self, parent, index):
         left_sibling = parent.childs[index - 1] if index > 0 else None
@@ -244,6 +244,43 @@ class TreeBalanced:
         parent.childs.pop(index + 1)
 
 
+    def _delete(self, node, key):
+        for i in range(len(node.keys)):
+            if key == node.keys[i]:
+                if not node.childs:
+                    node.keys.pop(i)
+                else:
+                    successor = self._get_successor(node, i)
+                    node.keys[i] = successor
+                    self._delete(node.childs[i + 1], successor)
+                return True
+
+            elif key < node.keys[i]:
+                if node.childs:
+                    deleted = self._delete(node.childs[i], key)
+                    if deleted:
+                        if len(node.childs[i].keys) < (self.degree - 1) // 2:
+                            self._fill(node, i)
+                        return True
+                else:
+                    return False
+
+        if node.childs:
+            deleted = self._delete(node.childs[-1], key)
+            if deleted:
+                if len(node.childs[-1].keys) < (self.degree - 1) // 2:
+                    self._fill(node, len(node.childs) - 1)
+                return True
+        return False
+
+    def _get_successor(self, node, index):
+        successor_node = node.childs[index + 1]
+        while successor_node.childs:
+            successor_node = successor_node.childs[0]
+        return successor_node.keys[0]
+
+
+
     def visualize_tree(self):
         graph = Digraph()
         self._add_nodes_and_edges(graph, self.root)
@@ -256,6 +293,3 @@ class TreeBalanced:
                 if child:
                     self._add_nodes_and_edges(graph, child)
                     graph.edge(str(node), str(child))
-                    
-                    
-    

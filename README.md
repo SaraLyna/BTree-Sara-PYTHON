@@ -117,12 +117,23 @@ si l'un des noeufs fils a plus de clés que l'autre elle effectue une rotation �
 donc _rotate_right() et _rotate_left() et _merge() viennent apres.
 - Codage des tests selon la logique donnée dans le cours.
 
+
 ### Semaine 8 : 
 #### Mercredi 06 Mars :
 - Correction des tests.
 - Importation du module graphviz.
 - Réflexion sur la partie suppression.
 - L'insertion marche très bien.
+
+
+### Semaine 9 : 
+#### Mercredi 13 Mars :
+- Mise à jour de l'affichage.
+- Réglages de la méthode insertion.
+- Test de l'affichage Window.py.
+- Exemple du cours insertion jusqu'à la clé numéro 18 réussie.
+
+
 
 ## UML DES CLASSES 
 
@@ -192,6 +203,7 @@ La suppression dans un arbre B-Tree suit un algorithme spécifique pour garantir
         - `_rotate_right` et `_rotate_left` comme expliqué plus haut.
         
 ### Affichage et window
+
 Pour l'affichage de la fenetre on utilisera la commande : 
 - `python3 Window.c`
 
